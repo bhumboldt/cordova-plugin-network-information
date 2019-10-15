@@ -46,13 +46,13 @@
 
 - (NSString*)w3cConnectionTypeFor:(CDVReachability*)reachability
 {
-    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
+    NetworkStatusReachability networkStatus = [reachability currentReachabilityStatus];
 
     switch (networkStatus) {
-        case NotReachable:
+        case UnReachable:
             return @"none";
 
-        case ReachableViaWWAN:
+        case ReachableOnWWAN:
         {
             BOOL isConnectionRequired = [reachability connectionRequired];
             if (isConnectionRequired) {
@@ -87,7 +87,7 @@
                 return @"cellular";
             }
         }
-        case ReachableViaWiFi:
+        case ReachableOnWiFi:
         {
             BOOL isConnectionRequired = [reachability connectionRequired];
             if (isConnectionRequired) {
